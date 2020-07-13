@@ -1,0 +1,25 @@
+{%extends "layout.html"%}
+{%block content%}
+    <div class="container"> <!--divisions help order sections, also used in css-->
+        <h2>Password</h2>
+        <div class="message"></div>
+            {{text | safe}}
+        <form action="{{url_for('index')}}" method="POST">
+            <div class="check">
+                <input title="Password" placeholder="Password" type="password" name="password" id="myInput" required>
+                <input type="checkbox" onclick="myFunction()">
+                <script>
+                    function myFunction() {
+                    var x = document.getElementById("myInput");
+                    if (x.type === "password") {
+                        x.type = "text";
+                    } else {
+                        x.type = "password";
+                    }
+                    } 
+                </script><br><br>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

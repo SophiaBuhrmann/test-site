@@ -1,0 +1,23 @@
+{%extends "layout.html"%}
+{%block content%}
+    <div class="container"> <!--divisions help order sections, also used in css-->
+        <h1>Arithmetic Questionnaire</h1>
+        <h3>Please enter your name, age and the language in which you learned arithmetic:</h3>
+        <div class="message"></div>
+            {{text | safe}}
+        <form action="{{url_for('profile')}}" method="POST">
+            {{form.hidden_tag()}}<br>
+            {{form.username.label(class="title")}}<br>
+            {{form.username(class="title")}}<br>
+            {{form.language.label(class="title")}}<br>
+            {{form.language(class="title")}}<br>
+            {{form.age.label(class="title")}}<br>
+            {{form.age(class="title")}}<br>
+            {{form.submit(class='button')}}
+            <!--<input title="Enter your name here" placeholder="Name" type="text" name="name" required> <br>
+            <input title="Language" placeholder="Language" type="text" name="language" required> <br>
+            <input title="Your Age" placeholder="Age" type="number" name="age" min="0" max="100" oninput="validity.valid||(value='');" required> <br>
+            <button type="submit">Submit</button> -->
+        </form>
+    </div>
+{% endblock %}

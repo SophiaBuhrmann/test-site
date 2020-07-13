@@ -1,0 +1,142 @@
+{%extends "layout.html"%}
+{%block content%}
+    <div class="container"> <!--divisions help order sections, also used in css-->
+        <h1>Arithmetic</h1>
+        <h3>Answer the following arithmetic question: </h3><h3 id="ques2"></h3>  
+        <form action="{{url_for('questions')}}" method="POST">
+            <input title="answer" placeholder=" " type="number" name="answer" min="0" oninput="validity.valid||(value='');" required> <br>
+            <input type="hidden" id="ques1" name="q"> 
+            <input type="hidden" id="correct_ans" name="correct_ans"> 
+            <input type="hidden" id="count_up" name="time" > 
+            <h4 id="count_down">20</h4> 
+            <button type="submit">Submit</button>
+               
+        </form>
+    </div>
+    
+    <script type="text/javascript">
+        var counter = 20
+        var timer =0
+        id2 = document.getElementById("count_up");
+        id2.value=timer;
+        setInterval( function(){
+            counter--;
+            timer++;
+            if (counter>=0){
+                id1 = document.getElementById("count_down");
+                id1.innerHTML = counter;
+                id2 = document.getElementById("count_up");
+                id2.value=timer;
+            }
+
+            if (counter===0){
+                id1.innerHTML = "Time is up, please submit your answer.";
+            }
+        }, 1000); 
+    </script>  
+
+    <script type="text/javascript">
+        var i = Math.floor(Math.random()*5+1);
+        console.log(i);
+        if (i==1){
+            var j = Math.floor(Math.random()*3+1);
+            var k = Math.floor(Math.random()*3+1);
+            if (j==1){var a = Math.floor(Math.random()*90+10);}
+            if (j==2){var a = Math.floor(Math.random()*900+100);}
+            if (j==3){var a = Math.floor(Math.random()*9000+1000);}
+            if (k==1){var b = Math.floor(Math.random()*90+10);}
+            if (k==2){var b = Math.floor(Math.random()*900+100);}
+            if (k==3){var b = Math.floor(Math.random()*9000+1000);}  
+            var ans=a+b; 
+            var str1= a.toString();
+            var str2= "+";
+            str3= b.toString();
+            var str4 = str1.concat(str2);
+            var str = str4.concat(str3);
+            console.log(str);
+            id1 = document.getElementById("ques2");  
+            id1.innerHTML = str;
+            id2 = document.getElementById("ques1");
+            id2.value=str;
+            id2 = document.getElementById("correct_ans");
+            id2.value=ans;
+        }
+        if ((i==2)|(i==5)){
+            var j = Math.floor(Math.random()*3+1);
+            var k = Math.floor(Math.random()*3+1);
+            if (j==2){var a = Math.floor(Math.random()*8+2);}
+            if (j==1){var a = Math.floor(Math.random()*90+10);}
+            if (j==3){var a = Math.floor(Math.random()*90+10);}
+            if (k==2){var b = Math.floor(Math.random()*8+2);}
+            if (k==1){var b = Math.floor(Math.random()*90+10);}  
+            if (k==3){var b = Math.floor(Math.random()*90+10);}  
+            var ans=a*b;
+            var str1= a.toString();
+            var str2= "x";
+            str3= b.toString();
+            var str4 = str1.concat(str2);
+            var str = str4.concat(str3);
+            console.log(str);
+            id1 = document.getElementById("ques2");  
+            id1.innerHTML = str;
+            id2 = document.getElementById("ques1");
+            id2.value=str;
+            id2 = document.getElementById("correct_ans");
+            id2.value=ans;
+        }
+        if (i==3){
+            var j = Math.floor(Math.random()*2+1);
+            if (j==1){var b = Math.floor(Math.random()*10+1);}
+            if (j==2){var b = Math.floor(Math.random()*90+10);}
+            var k = Math.floor(Math.random()*2+1);
+            if (k==1){var c = Math.floor(Math.random()*8+2);}
+            if (k==2){var c = Math.floor(Math.random()*90+10);} 
+            while(b*c>999){
+                if (k==1){var c = Math.floor(Math.random()*8+2);}
+                if (k==2){var c = Math.floor(Math.random()*90+10);} 
+            } 
+            var a = b*c;   
+            var ans = c;
+            var str1= a.toString();
+            var str2= "/";
+            str3= b.toString();
+            var str4 = str1.concat(str2);
+            var str = str4.concat(str3);
+            console.log(str);
+            id1 = document.getElementById("ques2");  
+            id1.innerHTML = str;
+            id2 = document.getElementById("ques1");
+            id2.value=str;
+            id2 = document.getElementById("correct_ans");
+            id2.value=ans;
+        }
+        if (i==4){
+            var j = Math.floor(Math.random()*3+1);
+            var k = Math.floor(Math.random()*3+1);
+            if (j==1){var a = Math.floor(Math.random()*90+10);}
+            if (j==2){var a = Math.floor(Math.random()*900+100);}
+            if (j==3){var a = Math.floor(Math.random()*9000+1000);}
+            if (k==1){var b = Math.floor(Math.random()*90+10);}
+            if (k==2){var b = Math.floor(Math.random()*900+100);}
+            if (k==3){var b = Math.floor(Math.random()*9000+1000);}  
+            if (b>a){
+                var c=b;
+                b=a;
+                a=c;
+            }
+            var ans=a-b;
+            var str1= a.toString();
+            var str2= "-";
+            str3= b.toString();
+            var str4 = str1.concat(str2);
+            var str = str4.concat(str3);
+            console.log(str);
+            id1 = document.getElementById("ques2");  
+            id1.innerHTML = str;
+            id2 = document.getElementById("ques1");
+            id2.value=str;
+            id2 = document.getElementById("correct_ans");
+            id2.value=ans;
+        }
+    </script>  
+{% endblock %}

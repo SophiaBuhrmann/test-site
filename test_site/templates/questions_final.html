@@ -1,0 +1,31 @@
+{%extends "layout.html"%}
+{%block content%}
+    <div class="container"> <!--divisions help order sections, also used in css-->
+        <h1>Arithmetic</h1>
+        <h3>Answer the following arithmetic question: 7+12</h3>
+        <form action="{{url_for('success')}}" method="POST">
+            <input title="answer" placeholder=" " type="number" name="answer" min="0" oninput="validity.valid||(value='');" required> <br>
+            <input type="hidden" id="count_up" name="time" >  
+            <button type="submit">Submit</button>
+            <h4 id="count_down">10</h4>     
+        </form>
+    </div>
+    <script type="text/javascript">
+        var counter = 10
+        var timer =0
+        setInterval( function(){
+            counter--;
+            timer++;
+            if (counter>=0){
+                id1 = document.getElementById("count_down");
+                id1.innerHTML = counter;
+                id2 = document.getElementById("count_up");
+                id2.value=timer;
+            }
+
+            if (counter===0){
+                id1.innerHTML = "Time is up, please submit your answer. Your answer will automatically be set to 0";
+            }
+        }, 1000); 
+    </script>  
+{% endblock %}
